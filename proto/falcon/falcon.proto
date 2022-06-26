@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 package falcon;
+option go_package = "./falcon";
 
 service FalconService {
 	// SendMsg sends msg to queue

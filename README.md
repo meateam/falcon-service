@@ -11,7 +11,7 @@
 
 [https://grpc.io/docs/protoc-installation/](url)
 
-`go get -u github.com/golang/protobuf/protoc-gen-go`
+`go  install github.com/golang/protobuf/protoc-gen-go@latest`
 
 ### And make sure to install all the dependencies (including the devDependencies):
 `npm i`

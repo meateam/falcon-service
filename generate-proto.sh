@@ -3,7 +3,7 @@
 # Path to this plugin, Note this must be an abolsute path on Windows (see #15)
 PROTOC_GEN_TS_PATH="../../node_modules/.bin/protoc-gen-ts"
 
-read -p "Enter spike, users or dropbox for proto generation: " protoName
+read -p "Enter falcon for proto generation: " protoName
 
 # Directory to write generated code to (.js and .d.ts files)
 OUT_DIR="./generated/${protoName}"
