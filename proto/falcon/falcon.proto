@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package falcon;
+
+service FalconService {
+	// SendMsg sends msg to queue
+	rpc SendMsg(SendMsgRequest) returns (EmptyResponse) {}
+}
+
+
+message SendMsgRequest {
+	// The msg that being sent.
+	string fileId = 1;
+
+	EventType eventType = 2;
+}
+
+enum EventType {
+	// The msg that being sent.
+	FILE_DELETE = 0;
+}
+
+message EmptyResponse {
+	
+}
