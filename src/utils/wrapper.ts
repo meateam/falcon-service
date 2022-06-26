@@ -35,7 +35,7 @@ export function wrapper(
             apm.endTransaction(statusToString(grpc.status.OK));
             log(Severity.INFO, 'response', func.name, traceID);
             callback(null, res);
-        } catch (err) {
+        } catch (err: any) {
             const validatedErr: ApplicationError = validateGrpcError(err);
             log(Severity.ERROR, func.name, err.message, getCurrTraceId());
             apm.endTransaction(validatedErr.name);

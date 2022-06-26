@@ -7,7 +7,7 @@ import { log, Severity } from './utils/logger';
     try {
         const server: Server = new Server();
         await Promise.all([MongoDB.connectMongo(server), FalconProducerRepository.initProducer()]);
-    } catch (error) {
+    } catch (error: any) {
         log(Severity.ERROR, error, 'Server failed');
     }
 })();

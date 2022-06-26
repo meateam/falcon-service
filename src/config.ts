@@ -9,7 +9,7 @@ export const config = {
         name: 'falcon-service',
         host: env.get('FLCNS_HOST').default('0.0.0.0').asString(),
         port: env.get('FLCNS_PORT').default('8081').asString(),
-        debugMode: env.get('FLCNS_DEBUG_MODE').default('false').asBool(),
+        debugMode: env.get('FLCNS_DEBUG_MODE').default('true').asBool(),
     },
     rabbit: {
         url: env.get('FLCNS_RABBITMQ_URL').default('amqp://localhost').asString(),
@@ -30,7 +30,7 @@ export const config = {
         indexPrefix: process.env.LOG_INDEX || 'kdrive',
     },
     mongo: {
-        uri: env.get('FLCNS_MONGO_URL').default('mongodb://localhost:27017/falcon').asString(),
+        uri: env.get('FLCNS_MONGO_HOST').default('mongodb://localhost:27017/falcon').asString(),
         falconEventsCollection: env.get('FLCNS_MONGO_FALCON_EVENTS_COLLECTION').default('falconevents').asString(),
     },
 };

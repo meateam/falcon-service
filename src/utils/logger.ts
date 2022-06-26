@@ -30,17 +30,17 @@ if (config.server.debugMode) {
     logger.add(consoleLogger);
 }
 
-// const options: WinstonElasticsearch.ElasticsearchTransportOptions = {
-//     indexPrefix: config.logger.indexPrefix,
-//     level: 'error',
-//     clientOpts: config.logger.options,
-//     bufferLimit: 100,
-//     messageType: 'log',
-//     ensureMappingTemplate: true,
-//     mappingTemplate: indexTemplateMapping,
-// };
-// const elasticsearch = new Elasticsearch(options);
-// logger.add(elasticsearch);
+const options: WinstonElasticsearch.ElasticsearchTransportOptions = {
+    indexPrefix: config.logger.indexPrefix,
+    level: 'error',
+    clientOpts: config.logger.options,
+    bufferLimit: 100,
+    messageType: 'log',
+    ensureMappingTemplate: true,
+    mappingTemplate: indexTemplateMapping,
+};
+const elasticsearch = new Elasticsearch(options);
+logger.add(elasticsearch);
 
 export const log = (level: Severity, message: string, name: string, traceID?: string, meta?: object) => {
     logger.log(level, message, { ...meta, traceID, method: name });

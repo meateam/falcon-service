@@ -9,7 +9,7 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-FROM node:12-alpine
+FROM node:12-alpine AS runner
 COPY --from=builder /usr/src/app/package.json /usr/src/app/package-lock.json ./
 COPY --from=builder /bin/grpc_health_probe /bin/grpc_health_probe
 COPY --from=builder /usr/src/app/dist /dist
@@ -17,3 +17,5 @@ COPY --from=builder /usr/src/app/proto /proto
 COPY --from=builder /usr/src/app/node_modules /node_modules
 EXPOSE 8080
 ENTRYPOINT ["node", "./dist/index.js"]
+
+

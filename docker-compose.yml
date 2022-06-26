@@ -1,19 +1,19 @@
 version: '3'
 
 services:
-  # falcon-service:
-  #   image: falcon-service
-  #   build: .
-  #   env_file:
-  #     - ../kdrive.env
-  #   ports:
-  #     - 8080:8080
-  #   depends_on:
-  #     - rabbitmq
+  falcon-service:
+    image: falcon-service
+    build: .
+    env_file:
+      - ../kdrive.env
+    ports:
+      - 8080:8080
+    depends_on:
+      - rabbitmq
      
   rabbitmq:
       image: rabbitmq:3-management-alpine
-      # container_name: rabbitmq
+      container_name: rabbitmq
       ports:
         - 5672:5672
         - 15672:15672
@@ -22,7 +22,7 @@ services:
     image: "docker.elastic.co/elasticsearch/elasticsearch:7.5.0"
     environment:
       - discovery.type=single-node
-    # container_name: elasticsearch
+    container_name: elasticsearch
     ports:
       - "9200:9200"
     healthcheck:

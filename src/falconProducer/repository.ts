@@ -17,7 +17,7 @@ export default class FalconProducerRepository {
             try {
                 await FalconProducerManager.sendMsg(falconEvent.fileId, falconEvent.eventType);
                 await FalconEventRepository.deleteFalconEvent(falconEvent.fileId);
-            } catch (error) {
+            } catch (error: any) {
                 log(Severity.ERROR, error, 'FalconEvent failed');
             }
         });

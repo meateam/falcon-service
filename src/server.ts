@@ -15,12 +15,12 @@ import { wrapper } from './utils/wrapper';
 
 const apm = require('elastic-apm-node');
 
-// apm.start({
-//     serviceName: config.server.name,
-//     secretToken: config.apm.secretToken,
-//     verifyServerCert: config.apm.verifyServerCert,
-//     serverUrl: config.apm.apmURL,
-// });
+apm.start({
+    serviceName: config.server.name,
+    secretToken: config.apm.secretToken,
+    verifyServerCert: config.apm.verifyServerCert,
+    serverUrl: config.apm.apmURL,
+});
 
 export const serviceNames: string[] = ['', 'falcon.falconService'];
 export const healthCheckStatusMap: any = {

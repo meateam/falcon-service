@@ -15,7 +15,7 @@ export default class RabbitMQ {
             log(Severity.INFO, 'Attempt connection to RabbitMQ', 'initRabbitmq');
             await menash.connect(config.rabbit.url, { maxTimeout: config.rabbit.maxTimeout });
             log(Severity.INFO, 'Connected to RabbitMQ', 'initRabbitmq');
-        } catch (error) {
+        } catch (error: any) {
             log(Severity.ERROR, 'Could not connect to RabbitMQ', 'initRabbitmq');
             throw new ServerError(error);
         }
@@ -26,7 +26,7 @@ export default class RabbitMQ {
             log(Severity.INFO, 'Attempt initQueue to in RabbitMQ', 'initQueue');
             await menash.declareQueue(config.rabbit.deleteQueue);
             log(Severity.INFO, 'initQueue RabbitMQ', 'initQueue');
-        } catch (error) {
+        } catch (error: any) {
             log(Severity.ERROR, 'Could not initQueue in RabbitMQ', 'initQueue');
             throw new ServerError(error);
         }
@@ -48,7 +48,7 @@ export default class RabbitMQ {
                     await RabbitMQ.init();
                     if (func) await func();
                 }
-            } catch (error) {
+            } catch (error: any) {
                 log(Severity.ERROR, error, 'ensureConnectionToRabbitMQ');
             }
         }, config.rabbit.healthCheckInterval);
