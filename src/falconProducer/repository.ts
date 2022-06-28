@@ -5,8 +5,13 @@ import { log, Severity } from '../utils/logger';
 
 export default class FalconProducerRepository {
     public static initProducer = async (): Promise<void> => {
-        await RabbitMQ.init();
-        await FalconProducerRepository.sendFailedFalconEvents();
+        try {
+            await RabbitMQ.init();
+            await FalconProducerRepository.sendFailedFalconEvents();
+
+        } catch (error: any) {
+            log(Severity.ERROR, error, 'FalconProducerRepository.initProducer');
+        }
 
         RabbitMQ.ensureConnection(FalconProducerRepository.sendFailedFalconEvents);
     };

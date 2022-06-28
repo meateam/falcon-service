@@ -27,7 +27,7 @@ export default class RabbitMQ {
             await menash.declareQueue(config.rabbit.deleteQueue);
             log(Severity.INFO, 'initQueue RabbitMQ', 'initQueue');
         } catch (error: any) {
-            log(Severity.ERROR, 'Could not initQueue in RabbitMQ', 'initQueue');
+            log(Severity.ERROR, error, 'Could not initQueue in RabbitMQ', 'initQueue');
             throw new ServerError(error);
         }
     };
@@ -44,7 +44,9 @@ export default class RabbitMQ {
         setInterval(async () => {
             try {
                 if (!RabbitMQ.getRabbitHealthStatus()) {
+                    log(Severity.ERROR, 'RabbitMQ connection is closed', 'ensureConnection');
                     await menash.close();
+                    log(Severity.INFO, 'try to reconnect to RabbitMQ', 'ensureConnection');
                     await RabbitMQ.init();
                     if (func) await func();
                 }
